@@ -3,7 +3,7 @@ from menu import MENU,resources
 money_earned = 0
 enough_resources = True
   
-
+# you can update resources in menu.py file
 def check_resources(dish):
     for resource in resources:
         if (resources[resource] - MENU[dish]['ingredients'][resource]) < 0 :
