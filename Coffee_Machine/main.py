@@ -10,11 +10,13 @@ def check_resources(dish):
             return False
     return True
 
+  
 def add_money(money):
     '''function to increase the money earned'''
     global money_earned
     money_earned += money
 
+    
 def ask_money(dish):
     # quarters = $0.25, dimes = $0.10, nickles = $0.05, pennies = $0.01
     quarters = float(input("enter the no of quarters : "))
@@ -23,6 +25,7 @@ def ask_money(dish):
     pennies = float(input("enter the no of pennies : "))
     return evaluate_money(quarters, dimes, nickles, pennies, dish)
 
+  
 def evaluate_money(quarters, dimes, nickles, pennies, dish):
     total_money = quarters * 0.25 + dimes * 0.10 + nickles * 0.05 + pennies * 0.01
     money_req = MENU[dish]['cost']
@@ -38,6 +41,7 @@ def evaluate_money(quarters, dimes, nickles, pennies, dish):
         add_money(money_req)
         return True
 
+      
 def send_report():
     # resources
     for resource in resources:
@@ -46,27 +50,27 @@ def send_report():
 
 
 def turn_off():
-    exit()
+  global enough_resources
+    enough_resources = False
+#     exit()
+
 
 def deduct_resources(dish):
     for resource in resources:
         resources[resource] -= MENU[dish]['ingredients'][resource]
         
         
-
 def make_dish(dish):
     if check_resources(dish):
         if ask_money(dish) :
             deduct_resources(dish)
             return f"here is your ☕ {dish}"
     else:
+        global enough_resources
         enough_resources = False
         return f"not enough resources for making {dish}"
         
     
-
-  
-
 while enough_resources:
     clear()
     user_need = input(f"What Would You Like To Have\n ☕ espresso : ${MENU['espresso']['cost']}\n ☕ latte : ${MENU['latte']['cost']} \n ☕ cappuccino : ${MENU['cappuccino']['cost']} \n make me a :: ")
