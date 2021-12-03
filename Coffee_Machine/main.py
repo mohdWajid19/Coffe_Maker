@@ -82,6 +82,6 @@ while enough_resources:
         send_report()
     else:
         print("We Dont Understand what you need check menu again and input from menu ")
-    if input("One more ☕?? (y/n) : ").lower() != 'y':
+    if enough_resources and input("One more ☕?? (y/n) : ").lower() != 'y':
         break
 
