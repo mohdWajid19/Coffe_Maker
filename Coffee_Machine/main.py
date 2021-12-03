@@ -1,7 +1,7 @@
 from replit import clear
 from menu import MENU,resources
 money_earned = 0
-enough_resources = False
+enough_resources = True
   
 
 def check_resources(dish):
@@ -52,6 +52,7 @@ def deduct_resources(dish):
     for resource in resources:
         resources[resource] -= MENU[dish]['ingredients'][resource]
         
+        
 
 def make_dish(dish):
     if check_resources(dish):
@@ -59,12 +60,14 @@ def make_dish(dish):
             deduct_resources(dish)
             return f"here is your ☕ {dish}"
     else:
+        enough_resources = False
         return f"not enough resources for making {dish}"
+        
     
 
   
 
-while not enough_resources:
+while enough_resources:
     clear()
     user_need = input(f"What Would You Like To Have\n ☕ espresso : ${MENU['espresso']['cost']}\n ☕ latte : ${MENU['latte']['cost']} \n ☕ cappuccino : ${MENU['cappuccino']['cost']} \n make me a :: ")
     if user_need == 'espresso' or user_need == "latte" or user_need == 'cappuccino':
